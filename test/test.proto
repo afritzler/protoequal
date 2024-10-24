@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package test;
+option go_package = "github.com/afritzler/protoequal/test";
+
+// The Foo message with Bar, Baz fields and a nested message Qux.
+message Foo {
+  string bar = 1; // Bar field
+  string baz = 2; // Baz field
+  Qux qux = 3;    // Qux is a nested message
+}
+
+// The Qux message with Driver and Handle fields.
+message Qux {
+  string driver = 1; // Driver field
+  string handle = 2; // Handle field
+}

@@ -1,0 +1,7 @@
+version: v2
+plugins:
+  # The protoc-gen-go stubs are required for grpc-go
+  - remote: buf.build/protocolbuffers/go
+    out: test
+    # You almost always want to set this option with protoc-gen-go
+    opt: paths=source_relative
