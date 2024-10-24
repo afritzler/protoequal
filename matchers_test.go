@@ -6,7 +6,7 @@ import (
 	"github.com/onsi/gomega"
 	"google.golang.org/protobuf/proto"
 
-	"github.com/afritzler/protoequal"
+	matchers "github.com/afritzler/protoequal"
 	"github.com/afritzler/protoequal/test"
 )
 
