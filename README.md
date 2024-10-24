@@ -68,8 +68,9 @@ import (
     "testing"
     
     "google.golang.org/protobuf/proto"
-    "github.com/afritzler/protoequal/matchers" 
+    . "github.com/afritzler/protoequal" 
     "github.com/afritzler/protoequal/test"
+    "github.com/onsi/gomega"
 )
 
 func TestProtoEqualMatcher(t *testing.T) {
@@ -95,7 +96,7 @@ func TestProtoEqualMatcher(t *testing.T) {
     }
 
     // Use ProtoEqual to assert that actualMessage matches expectedMessage
-    g.Expect(actualMessage).To(matchers.ProtoEqual(expectedMessage))
+    g.Expect(actualMessage).To(ProtoEqual(expectedMessage))
 }
 ```
 
