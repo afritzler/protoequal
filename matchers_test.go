@@ -3,11 +3,11 @@ package matchers_test
 import (
 	"testing"
 
+	v1 "github.com/afritzler/protoequal/test/api/v1"
 	"github.com/onsi/gomega"
 	"google.golang.org/protobuf/proto"
 
 	matchers "github.com/afritzler/protoequal"
-	"github.com/afritzler/protoequal/test"
 )
 
 func TestProtoEqualMatcher(t *testing.T) {
@@ -22,18 +22,18 @@ func TestProtoEqualMatcher(t *testing.T) {
 	}{
 		{
 			name: "Should match identical messages",
-			actual: &test.Foo{
+			actual: &v1.Foo{
 				Bar: "test-bar",
 				Baz: "test-baz",
-				Qux: &test.Qux{
+				Qux: &v1.Qux{
 					Driver: "foo-driver",
 					Handle: "foo-handle",
 				},
 			},
-			expected: &test.Foo{
+			expected: &v1.Foo{
 				Bar: "test-bar",
 				Baz: "test-baz",
-				Qux: &test.Qux{
+				Qux: &v1.Qux{
 					Driver: "foo-driver",
 					Handle: "foo-handle",
 				},
@@ -42,18 +42,18 @@ func TestProtoEqualMatcher(t *testing.T) {
 		},
 		{
 			name: "Should not match different messages",
-			actual: &test.Foo{
+			actual: &v1.Foo{
 				Bar: "test-bar",
 				Baz: "test-baz",
-				Qux: &test.Qux{
+				Qux: &v1.Qux{
 					Driver: "foo-driver",
 					Handle: "foo-handle",
 				},
 			},
-			expected: &test.Foo{
+			expected: &v1.Foo{
 				Bar: "different-bar",
 				Baz: "test-baz",
-				Qux: &test.Qux{
+				Qux: &v1.Qux{
 					Driver: "foo-driver",
 					Handle: "foo-handle",
 				},
@@ -62,18 +62,18 @@ func TestProtoEqualMatcher(t *testing.T) {
 		},
 		{
 			name: "Should not match messages with different nested fields",
-			actual: &test.Foo{
+			actual: &v1.Foo{
 				Bar: "test-bar",
 				Baz: "test-baz",
-				Qux: &test.Qux{
+				Qux: &v1.Qux{
 					Driver: "foo-driver",
 					Handle: "foo-handle",
 				},
 			},
-			expected: &test.Foo{
+			expected: &v1.Foo{
 				Bar: "test-bar",
 				Baz: "test-baz",
-				Qux: &test.Qux{
+				Qux: &v1.Qux{
 					Driver: "different-driver",
 					Handle: "foo-handle",
 				},
