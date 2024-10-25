@@ -41,17 +41,20 @@ Assume you have the following `.proto` file defining `Foo` and `Qux` messages:
 ```protobuf
 syntax = "proto3";
 
-package test;
+package api.v1;
+option go_package = "github.com/afritzler/protoequal/test/api/v1";
 
+// The Foo message with Bar, Baz fields and a nested message Qux.
 message Foo {
-  string bar = 1;
-  string baz = 2;
-  Qux qux = 3;
+  string bar = 1; // Bar field
+  string baz = 2; // Baz field
+  Qux qux = 3;    // Qux is a nested message
 }
 
+// The Qux message with Driver and Handle fields.
 message Qux {
-  string driver = 1;
-  string handle = 2;
+  string driver = 1; // Driver field
+  string handle = 2; // Handle field
 }
 ```
 
@@ -69,7 +72,7 @@ import (
     
     "google.golang.org/protobuf/proto"
     . "github.com/afritzler/protoequal" 
-    "github.com/afritzler/protoequal/test"
+    "github.com/afritzler/protoequal/test/api/v1"
     "github.com/onsi/gomega"
 )
 
