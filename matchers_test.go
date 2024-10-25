@@ -60,6 +60,26 @@ func TestProtoEqualMatcher(t *testing.T) {
 			},
 			shouldMatch: false,
 		},
+		{
+			name: "Should not match messages with different nested fields",
+			actual: &test.Foo{
+				Bar: "test-bar",
+				Baz: "test-baz",
+				Qux: &test.Qux{
+					Driver: "foo-driver",
+					Handle: "foo-handle",
+				},
+			},
+			expected: &test.Foo{
+				Bar: "test-bar",
+				Baz: "test-baz",
+				Qux: &test.Qux{
+					Driver: "different-driver",
+					Handle: "foo-handle",
+				},
+			},
+			shouldMatch: false,
+		},
 	}
 
 	// Run test cases
