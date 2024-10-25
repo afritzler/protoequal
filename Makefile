@@ -88,11 +88,6 @@ buf: $(BUF) ## Download goimports locally if necessary.
 $(BUF): $(LOCALBIN)
 	$(call go-install-tool,$(BUF),github.com/bufbuild/buf/cmd/buf,$(BUF_VERSION))
 
-.PHONY: gen-crd-api-reference-docs
-gen-crd-api-reference-docs: $(GEN_CRD_API_REFERENCE_DOCS) ## Download gen-crd-api-reference-docs locally if necessary.
-$(GEN_CRD_API_REFERENCE_DOCS): $(LOCALBIN)
-	$(call go-install-tool,$(GEN_CRD_API_REFERENCE_DOCS),github.com/ahmetb/gen-crd-api-reference-docs,$(GEN_CRD_API_REFERENCE_DOCS_VERSION))
-
 # go-install-tool will 'go install' any package with custom target and name of binary, if it doesn't exist
 # $1 - target path with name of binary (ideally with version)
 # $2 - package url which can be installed
