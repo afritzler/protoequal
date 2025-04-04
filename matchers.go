@@ -49,12 +49,12 @@ func ProtoEqual(expected proto.Message) types.GomegaMatcher {
 	}
 }
 
-// ProtoContainsMatcher is a custom Gomega matcher to check if a slice of protocol buffers contains specific elements
-type ProtoContainsMatcher struct {
+// ProtoConsistOfMatcher is a custom Gomega matcher to check if a slice of protocol buffers contains specific elements
+type ProtoConsistOfMatcher struct {
 	Elements []proto.Message
 }
 
-func (matcher *ProtoContainsMatcher) Match(actual interface{}) (success bool, err error) {
+func (matcher *ProtoConsistOfMatcher) Match(actual interface{}) (success bool, err error) {
 	v := reflect.ValueOf(actual)
 	if v.Kind() != reflect.Slice {
 		return false, nil
@@ -87,15 +87,15 @@ func (matcher *ProtoContainsMatcher) Match(actual interface{}) (success bool, er
 	return true, nil
 }
 
-func (matcher *ProtoContainsMatcher) FailureMessage(actual interface{}) (message string) {
+func (matcher *ProtoConsistOfMatcher) FailureMessage(actual interface{}) (message string) {
 	return format.Message(actual, "to contain elements", matcher.Elements)
 }
 
-func (matcher *ProtoContainsMatcher) NegatedFailureMessage(actual interface{}) (message string) {
+func (matcher *ProtoConsistOfMatcher) NegatedFailureMessage(actual interface{}) (message string) {
 	return format.Message(actual, "not to contain elements", matcher.Elements)
 }
 
-// ProtoContains returns a Gomega matcher that checks if a slice of Protobuf messages contains all the specified elements.
+// ProtoConsistOf returns a Gomega matcher that checks if a slice of Protobuf messages contains all the specified elements.
 // It verifies that the input is a slice of proto.Message implementations and that each specified element is present in the
 // actual slice (in any order), using proto.Equal for comparisons. The actual slice may contain additional elements beyond
 // those specified.
@@ -106,16 +106,16 @@ func (matcher *ProtoContainsMatcher) NegatedFailureMessage(actual interface{}) (
 //
 // Example usage:
 //
-//	Expect(items).To(ProtoContains(
+//	Expect(items).To(ProtoConsistOf(
 //	    &v1.Foo{Bar: "test1"},
 //	    &v1.Foo{Bar: "test2"},
 //	)) // Passes if items contains both elements (and possibly more)
-//	Expect(missing).ToNot(ProtoContains(
+//	Expect(missing).ToNot(ProtoConsistOf(
 //	    &v1.Foo{Bar: "test1"},
 //	    &v1.Foo{Bar: "test2"},
 //	)) // Passes if missing lacks at least one of these elements
-func ProtoContains(elements ...proto.Message) types.GomegaMatcher {
-	return &ProtoContainsMatcher{
+func ProtoConsistOf(elements ...proto.Message) types.GomegaMatcher {
+	return &ProtoConsistOfMatcher{
 		Elements: elements,
 	}
 }

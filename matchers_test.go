@@ -97,7 +97,7 @@ func TestProtoEqualMatcher(t *testing.T) {
 func TestProtoContainsMatcher(t *testing.T) {
 	g := gomega.NewWithT(t)
 
-	// Define test cases for ProtoContains
+	// Define test cases for ProtoConsistOf
 	testCases := []struct {
 		name        string
 		actual      interface{}
@@ -215,9 +215,9 @@ func TestProtoContainsMatcher(t *testing.T) {
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
 			if tc.shouldMatch {
-				g.Expect(tc.actual).To(matchers.ProtoContains(tc.elements...))
+				g.Expect(tc.actual).To(matchers.ProtoConsistOf(tc.elements...))
 			} else {
-				g.Expect(tc.actual).ToNot(matchers.ProtoContains(tc.elements...))
+				g.Expect(tc.actual).ToNot(matchers.ProtoConsistOf(tc.elements...))
 			}
 		})
 	}
