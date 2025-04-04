@@ -248,7 +248,7 @@ func (matcher *ProtoSliceContainsMatcher) NegatedFailureMessage(actual interface
 //	Expect(items).To(ProtoSliceContains(expected)) // Passes
 //	missing := []proto.Message{&v1.Foo{Bar: "test1"}}
 //	Expect(missing).ToNot(ProtoSliceContains(expected)) // Passes
-func ProtoSliceContains(elements []proto.Message) types.GomegaMatcher {
+func ProtoSliceContains(elements ...proto.Message) types.GomegaMatcher {
 	return &ProtoSliceContainsMatcher{
 		Elements: elements,
 	}

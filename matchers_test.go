@@ -480,9 +480,9 @@ func TestProtoSliceContainsMatcher(t *testing.T) {
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
 			if tc.shouldMatch {
-				g.Expect(tc.actual).To(matchers.ProtoSliceContains(tc.elements))
+				g.Expect(tc.actual).To(matchers.ProtoSliceContains(tc.elements...))
 			} else {
-				g.Expect(tc.actual).ToNot(matchers.ProtoSliceContains(tc.elements))
+				g.Expect(tc.actual).ToNot(matchers.ProtoSliceContains(tc.elements...))
 			}
 		})
 	}
