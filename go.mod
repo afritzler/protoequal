@@ -4,7 +4,7 @@ go 1.23.2
 
 require (
 	github.com/onsi/gomega v1.38.0
-	google.golang.org/protobuf v1.36.6
+	google.golang.org/protobuf v1.36.7
 )
 
 require (
