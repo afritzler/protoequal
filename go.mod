@@ -3,7 +3,7 @@ module github.com/afritzler/protoequal
 go 1.24.0
 
 require (
-	github.com/onsi/gomega v1.40.0
+	github.com/onsi/gomega v1.41.0
 	google.golang.org/protobuf v1.36.11
 )
 
